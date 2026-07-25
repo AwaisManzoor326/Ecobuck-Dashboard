@@ -1,0 +1,222 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #F7FAF7;
+    --surface: rgba(255, 255, 255, 0.82);
+    --surface-soft: #E8F8EE;
+    --primary: #299738;
+    --primary-bright: #25D366;
+    --primary-dark: #1A3B24;
+    --dark-forest: #163320;
+    --mint-accent: #E8F8EE;
+    --earth: #C89D35;
+    --danger: #E5533D;
+    --text-primary: #1A3B24;
+    --text-secondary: #556B5C;
+    --border: #E5EAE5;
+    --glass-bg: rgba(255, 255, 255, 0.78);
+    --glass-border: rgba(229, 234, 229, 0.9);
+    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark {
+    --background: #0D1810;
+    --surface: rgba(22, 51, 32, 0.82);
+    --surface-soft: rgba(29, 66, 42, 0.9);
+    --primary: #299738;
+    --primary-bright: #25D366;
+    --primary-dark: #1A3B24;
+    --dark-forest: #163320;
+    --mint-accent: #1C3826;
+    --earth: #C89D35;
+    --danger: #FF7966;
+    --text-primary: #F0F7F2;
+    --text-secondary: #A3B8A8;
+    --border: #243B2A;
+    --glass-bg: rgba(22, 51, 32, 0.78);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  html,
+  body {
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+    background-color: var(--background);
+    color: var(--text-primary);
+  }
+}
+
+/* Glassmorphism utility classes for Eco Zindagi theme */
+.glass-panel {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  border-radius: 20px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(41, 151, 56, 0.45);
+  box-shadow: 0 8px 28px rgba(41, 151, 56, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-header {
+  background: var(--surface);
+  backdrop-filter: blur(24px) saturate(190%);
+  -webkit-backdrop-filter: blur(24px) saturate(190%);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.glass-pill {
+  background: var(--surface-soft);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid var(--border);
+  border-radius: 9999px;
+}
+
+/* Eco Mesh Background Overlay */
+.eco-mesh-bg {
+  position: relative;
+  background-color: var(--background);
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(41, 151, 56, 0.12) 0px, transparent 50%),
+    radial-gradient(at 90% 15%, rgba(200, 157, 53, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 85%, rgba(37, 211, 102, 0.12) 0px, transparent 50%);
+}
+
+.dark .eco-mesh-bg {
+  background-image: 
+    radial-gradient(at 10% 10%, rgba(41, 151, 56, 0.2) 0px, transparent 50%),
+    radial-gradient(at 90% 15%, rgba(200, 157, 53, 0.12) 0px, transparent 50%),
+    radial-gradient(at 50% 85%, rgba(37, 211, 102, 0.15) 0px, transparent 50%);
+}
+
+.eco-mesh-bg::before {
+  content: "";
+  position: absolute;
+  top: -5%;
+  left: -5%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 650px;
+  max-height: 650px;
+  background: radial-gradient(circle, rgba(41, 151, 56, 0.18) 0%, rgba(37, 211, 102, 0.1) 50%, transparent 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  animation: pulseBlob 12s ease-in-out infinite alternate;
+}
+
+.eco-mesh-bg::after {
+  content: "";
+  position: absolute;
+  bottom: -5%;
+  right: -5%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 600px;
+  max-height: 600px;
+  background: radial-gradient(circle, rgba(26, 59, 36, 0.12) 0%, rgba(41, 151, 56, 0.1) 50%, transparent 75%);
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 0;
+  border-radius: 50%;
+  animation: pulseBlob 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes pulseBlob {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.1) translate(20px, -20px); }
+  100% { transform: scale(0.95) translate(-15px, 15px); }
+}
+
+/* Custom Scrollbar for internal panel containers */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Subtle organic grain texture */
+.bg-grain {
+  background-image: radial-gradient(rgba(41, 151, 56, 0.04) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+.dark .bg-grain {
+  background-image: radial-gradient(rgba(37, 211, 102, 0.05) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Section Eyebrow Overline Style */
+.eyebrow-text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--earth);
+}
+
+/* Tabular numbers for clean gauge alignments */
+.font-numeric {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Organic shimmer pulse for custom skeletons */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--surface-soft) 25%,
+    var(--border) 50%,
+    var(--surface-soft) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite linear;
+}
+

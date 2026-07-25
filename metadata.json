@@ -1,0 +1,6 @@
+{
+  "name": "EcoBuck IoT Dashboard",
+  "description": "Intelligent IoT compost-monitoring dashboard for EcoBuck by Eco Zindagi Pvt Ltd.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
