@@ -28,13 +28,16 @@ export const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
   return (
     <div className="relative">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-semibold rounded-full bg-[#E8F8EE] dark:bg-[#1C3826] text-[#299738] dark:text-[#25D366] border border-[#299738]/20 hover:bg-[#299738]/20 transition-colors"
+        className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-full bg-[#E8F8EE] dark:bg-[#1C3826] text-[#299738] dark:text-[#25D366] border border-[#299738]/20 hover:bg-[#299738]/20 transition-colors leading-none"
         title="Test state scenarios (Dev Tools)"
       >
-        <Sliders className="w-3 h-3 shrink-0" />
-        <span className="hidden sm:inline">Scenario: </span>
-        <strong className="capitalize text-[11px] max-w-[80px] sm:max-w-none truncate">{currentScenario.replace("_", " ")}</strong>
+        <Sliders className="w-3.5 h-3.5 shrink-0" />
+        <span className="hidden sm:inline font-medium text-xs leading-none">Scenario:</span>
+        <strong className="capitalize text-xs font-bold leading-none max-w-[90px] sm:max-w-none truncate">
+          {currentScenario.replace("_", " ")}
+        </strong>
       </button>
 
       {isOpen && (

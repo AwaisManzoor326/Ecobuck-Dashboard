@@ -49,59 +49,61 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-center eco-mesh-bg p-4 sm:p-6 overflow-y-auto relative">
+    <div className="min-h-[100dvh] w-full flex items-center justify-center eco-mesh-bg p-3 sm:p-6 md:p-8 relative overflow-x-hidden">
       
-      {/* Top right theme toggle */}
-      <div className="absolute top-4 right-4 z-20">
-        <button
-          onClick={() => onToggleTheme(theme === "dark" ? "light" : "dark")}
-          className="p-2.5 rounded-2xl glass-panel text-[var(--text-secondary)] hover:text-[var(--text-primary)] shadow-md transition-colors flex items-center gap-2 text-xs font-medium"
-        >
-          {theme === "dark" ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-          <span className="hidden sm:inline capitalize">{theme} Mode</span>
-        </button>
-      </div>
-
-      <div className="max-w-4xl w-full glass-panel rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-12 my-auto backdrop-blur-2xl relative z-10 border border-emerald-500/20">
+      <div className="max-w-4xl w-full glass-panel rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden grid grid-cols-1 md:grid-cols-12 my-auto backdrop-blur-2xl relative z-10 border border-emerald-500/20">
         
-        {/* Left Column: Visual EcoBuck Device Showcase & Brand Story */}
-        <div className="md:col-span-5 bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-950 p-5 sm:p-8 text-white flex flex-col justify-between relative overflow-hidden">
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl" />
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-lime-400/15 rounded-full blur-3xl" />
+        {/* Left Column: Visual EcoBuck Device Showcase & Brand Header */}
+        <div className="md:col-span-5 bg-gradient-to-br from-emerald-900 via-emerald-900 to-emerald-950 p-4 sm:p-6 md:p-8 text-white flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-lime-400/15 rounded-full blur-3xl pointer-events-none" />
 
-          {/* Top Brand Logo */}
-          <div className="relative z-10 space-y-1">
-            <a
-              href="https://www.ecozindagi.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-white/10 border border-white/20 text-emerald-200 text-[10px] font-bold uppercase tracking-wider hover:bg-white/20 transition-colors"
+          {/* Top Header: Brand Logo + Theme Toggle in Green Section */}
+          <div className="relative z-10 flex items-center justify-between gap-2">
+            <div>
+              <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                {PRODUCT_NAME}
+              </h1>
+              <p className="text-[11px] text-emerald-200/90 font-medium hidden md:block mt-0.5">
+                IoT Compost Intelligence
+              </p>
+            </div>
+            
+            {/* Theme Toggle Button inside Green Header */}
+            <button
+              type="button"
+              onClick={() => onToggleTheme(theme === "dark" ? "light" : "dark")}
+              className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 text-white text-xs font-semibold backdrop-blur-md transition-all active:scale-95"
+              title="Toggle Light/Dark Theme"
             >
-              <span>{BRAND_COMPANY}</span>
-              <span className="text-[9px] opacity-75">ecozindagi.com ↗</span>
-            </a>
-            <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-white flex items-center gap-2 mt-2">
-              <span className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-              {PRODUCT_NAME}
-            </h1>
+              {theme === "dark" ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-300 shrink-0" />
+                  <span className="text-emerald-100">Light</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-emerald-200 shrink-0" />
+                  <span className="text-emerald-100">Dark</span>
+                </>
+              )}
+            </button>
           </div>
 
-          {/* Device Showcase Vector */}
-          <div className="my-4 sm:my-6 relative z-10 flex flex-col items-center">
+          {/* Device Showcase Vector - Nicely Proportioned in Green Area */}
+          <div className="flex flex-col items-center my-3 sm:my-4 md:my-6 relative z-10">
             <DeviceIllustration
               status="online"
               fillPercent={82}
               temp={36.8}
               humidity={64}
-              className="w-32 h-44 sm:w-40 sm:h-52"
+              className="w-24 h-32 sm:w-32 sm:h-44 md:w-36 md:h-48"
             />
-            <div className="mt-3 sm:mt-4 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[10px] sm:text-[11px] text-emerald-200 font-medium tracking-wide">
-              IoT Telemetry v1.8.4
-            </div>
           </div>
 
-          {/* Brand Tagline */}
-          <div className="relative z-10 border-t border-emerald-800/80 pt-4">
+          {/* Brand Tagline (Desktop/Tablet view) */}
+          <div className="hidden md:block relative z-10 border-t border-emerald-800/80 pt-3 mt-auto">
             <p className="text-xs text-emerald-100 font-medium italic leading-relaxed">
               "{BRAND_TAGLINE}"
             </p>
@@ -109,31 +111,34 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
         </div>
 
         {/* Right Column: Authenticated Login Panel */}
-        <div className="md:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between">
+        <div className="md:col-span-7 p-4 sm:p-6 md:p-8 flex flex-col justify-between bg-[var(--surface)]">
           <div>
-            <h2 className="text-2xl font-bold text-[var(--text-primary)]">
-              Welcome back to EcoBuck
-            </h2>
-            <p className="text-xs text-[var(--text-secondary)] mt-1.5 leading-relaxed">
-              Monitor compost health, receive intelligent recommendations, and turn everyday food waste into living soil.
-            </p>
+            {/* Form Header */}
+            <div>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-[var(--text-primary)]">
+                Welcome back
+              </h2>
+              <p className="text-xs text-[var(--text-secondary)] mt-1 leading-relaxed">
+                Sign in to monitor compost health & recommendations.
+              </p>
+            </div>
 
             {/* Error Message */}
             {errorMsg && (
-              <div className="mt-4 p-3 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-600 dark:text-rose-400 text-xs font-medium">
+              <div className="mt-3 p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-700 dark:text-rose-300 text-xs font-medium">
                 {errorMsg}
               </div>
             )}
 
             {/* Forgot Password Notice */}
             {forgotMsg && (
-              <div className="mt-4 p-3 rounded-2xl bg-sky-500/10 border border-sky-500/30 text-sky-600 dark:text-sky-400 text-xs font-medium">
-                Passcode reset link dispatched to demo inbox. Use demo shortcuts below to test instant login.
+              <div className="mt-3 p-2.5 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-700 dark:text-sky-300 text-xs font-medium">
+                Passcode reset link dispatched. Use demo shortcuts below for instant testing.
               </div>
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <form onSubmit={handleSubmit} className="mt-4 space-y-3 sm:space-y-4">
               
               {/* Email */}
               <div>
@@ -147,7 +152,7 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all"
+                    className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all"
                     placeholder="ayesha@ecobuck.demo"
                   />
                 </div>
@@ -165,13 +170,13 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all"
+                    className="w-full pl-10 pr-10 py-2 text-xs sm:text-sm rounded-xl bg-[var(--surface-soft)] border border-[var(--border)] text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-all"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-3 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    className="absolute right-3.5 top-2.5 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                   >
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
@@ -179,8 +184,8 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
               </div>
 
               {/* Remember & Forgot */}
-              <div className="flex items-center justify-between text-xs pt-1">
-                <label className="flex items-center gap-2 text-[var(--text-secondary)] cursor-pointer">
+              <div className="flex items-center justify-between text-xs pt-0.5">
+                <label className="flex items-center gap-2 text-[var(--text-secondary)] cursor-pointer select-none">
                   <input
                     type="checkbox"
                     checked={rememberMe}
@@ -203,9 +208,9 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
               <AppButton
                 type="submit"
                 variant="primary"
-                size="lg"
+                size="md"
                 isLoading={isLoading}
-                className="w-full mt-2"
+                className="w-full mt-1"
               >
                 Sign In to Dashboard
               </AppButton>
@@ -213,8 +218,8 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
           </div>
 
           {/* Demo Account Quick Shortcuts */}
-          <div className="mt-6 pt-5 border-t border-[var(--border)] space-y-2">
-            <div className="text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">
+          <div className="mt-4 pt-3.5 border-t border-[var(--border)] space-y-1.5">
+            <div className="text-[10px] sm:text-[11px] font-bold text-[var(--text-secondary)] uppercase tracking-wider">
               Instant Demo Account Access
             </div>
 
@@ -222,10 +227,10 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
               <button
                 type="button"
                 onClick={() => setDemoAccount("ayesha@ecobuck.demo")}
-                className="p-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--border)] border border-[var(--border)] text-left transition-colors flex items-center gap-2.5 group"
+                className="p-2 sm:p-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--border)] border border-[var(--border)] text-left transition-colors flex items-center gap-2.5 group"
               >
                 <div className="p-1.5 rounded-lg bg-emerald-500/10 text-emerald-600 shrink-0">
-                  <UserCheck className="w-4 h-4" />
+                  <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-xs font-bold text-[var(--text-primary)] group-hover:text-[var(--primary)] truncate">
@@ -238,10 +243,10 @@ export const LoginPanel: React.FC<LoginPanelProps> = ({
               <button
                 type="button"
                 onClick={() => setDemoAccount("admin@ecobuck.demo")}
-                className="p-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--border)] border border-[var(--border)] text-left transition-colors flex items-center gap-2.5 group"
+                className="p-2 sm:p-2.5 rounded-xl bg-[var(--surface-soft)] hover:bg-[var(--border)] border border-[var(--border)] text-left transition-colors flex items-center gap-2.5 group"
               >
                 <div className="p-1.5 rounded-lg bg-purple-500/10 text-purple-600 shrink-0">
-                  <ShieldCheck className="w-4 h-4" />
+                  <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </div>
                 <div className="min-w-0">
                   <div className="text-xs font-bold text-[var(--text-primary)] group-hover:text-[var(--primary)] truncate">
